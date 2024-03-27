@@ -1,0 +1,68 @@
+Drop schema if exists data_base;
+Create schema data_base;
+
+Drop database if exists data_base;
+Create database data_base;
+USE data_base;
+
+create table diaxiristis(
+Diaxiristis_Id int NOT NULL auto_increment,
+Username varchar(50) NOT NULL,
+Pass varchar(50) NOT NULL,
+Email varchar(50) NOT NULL,
+First_name varchar(50) NOT NULL,
+Last_name varchar(50) NOT NULL,
+
+primary key(Diaxiristis_Id)
+)ENGINE=InnoDB; 
+
+create table diasostis(
+Diasostis_Id int NOT NULL auto_increment,
+Username varchar(50) NOT NULL,
+Pass Varchar(50) NOT NULL,
+Email varchar(50) NOT NULL, 
+primary key(Diasostis_Id)
+)ENGINE=InnoDB;
+
+create table politis(
+Politis_Id int NOT NULL auto_increment,
+First_name varchar(50) NOT NULL,
+Last_name varchar(50) NOT NULL,
+Phone_number int(20) NOT NULL,
+Username varchar(50) NOT NULL,
+Pass varchar(50) NOT NULL,
+
+primary key(Politis_Id)
+)ENGINE=InnoDB;
+
+
+create table oxima(
+license_plate int(10) NOT NULL,
+Drivers_name varchar(50) NOT NULL,
+index (Diasostis_Id),
+
+primary key(license_plate)
+)ENGINE=InnoDB;
+
+
+create table oxima_inventory(
+items_name varchar(50) NOT NULL,
+items_ammount int(100) NOT NULL,
+
+index(Diasostis_Id),
+index(license_plate)
+)ENGINE=InnoDB;
+
+create table task (
+Politis_firstname varchar(50) NOT NULL, 
+Politis_lastname varchar(50) NOT NULL,
+Phonenum_politis int(20) NOT NULL,
+Date_of_sumbit DATE NOT NULL,
+items_name varchar(50) NOT NULL,
+items_ammount int(100) NOT NULL,
+kind_of_request enum('prosfora' , 'aitima'),
+
+index(Politis_Id)
+)ENGINE=InnoDB;
+
+
