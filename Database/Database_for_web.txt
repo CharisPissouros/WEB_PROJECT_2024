@@ -65,4 +65,15 @@ kind_of_request enum('prosfora' , 'aitima'),
 index(Politis_Id)
 )ENGINE=InnoDB;
 
+create table base (
+product_id int(5) PRIMARY KEY NOT NULL,
+product_name varchar(50) NOT NULL, 
+product_category int(20)
+)ENGINE=InnoDB;
 
+create table details (
+    detail_name varchar(50) NOT NULL, 
+    detail_value float(20) NOT NULL ,
+    FOREIGN KEY (product_id) REFERENCES 
+    base(product_id)
+)ENGINE=InnoDB;
