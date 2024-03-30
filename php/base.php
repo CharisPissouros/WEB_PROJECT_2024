@@ -1,5 +1,5 @@
 <?php
-//database connection.
+include "get_from_database.php"; //path
 
 // Read the JSON file
 $jsonData = file_get_contents('/path/to/your/json/file.json');

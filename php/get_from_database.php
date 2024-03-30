@@ -1,5 +1,5 @@
 <?php 
-if ($server["REQUEST METHOD" ] == "GET"||"POST"||"PUT"||"DELETE" ){
+if ($server["REQUEST METHOD" ] == "GET"||"POST"||"PUT"||"DELETE" ){ // μπορει να μην χρειαζεται το DELETE και το PUT.
 
     $servername = "localhost"; // πρεπει να γινει update με το Localhost της βασης 
     $username = "root"; //πρεπει να γινει update με το username της βασης 
