@@ -77,3 +77,8 @@ create table details (
     FOREIGN KEY (product_id) REFERENCES 
     base(product_id)
 )ENGINE=InnoDB;
+
+
+
+//Πρεπει να υπαρξει ενας πινακας για τον οποιο θα πρεπει να εισαγετε ιστορικο των task και απο τις δυο πλευρες 
+// και ανα πασα στιγμη να εχει acces ο διαχειρηστης. 
