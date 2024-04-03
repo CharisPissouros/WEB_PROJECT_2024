@@ -37,10 +37,10 @@ var role = prompt("Are you a civilian or a rescuer?"); // check by their credent
 
 // Check the role and display the appropriate message
 if (role === "civilian") {
-    alert("You are a civilian. You can create pop-up requests.");
+    //alert("You are a civilian. You can create pop-up requests.");
     // Add code here to handle civilian pop-up requests
 } else if (role === "rescuer") {
-    alert("You are a rescuer. You can create pop-up requests.");
+    //alert("You are a rescuer. You can create pop-up requests.");
     // Add code here to handle rescuer pop-up requests
 } else {
     alert("Invalid role. Please try again.");
