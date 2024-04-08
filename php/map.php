@@ -9,6 +9,9 @@
  <script>
     //create a script to take a query from the database and display it in a table
  </script>
+
+
+
 </body>
 
 </html>

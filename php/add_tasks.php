@@ -1,6 +1,7 @@
 <?php
 session_start();
 //include 'database.php'; // we will use this later if database is needed
+include 'database.php';
 ?>
 <!DOCTYPE html>
 <html>

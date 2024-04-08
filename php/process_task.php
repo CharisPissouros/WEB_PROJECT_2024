@@ -1,5 +1,5 @@
 <?php
-
+include 'database.php';
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the form data
@@ -28,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // TODO: Redirect the user to a success page or display a success message
     // header('Location: success.php');
     // exit;
+  
+
 }
 ?>
 
