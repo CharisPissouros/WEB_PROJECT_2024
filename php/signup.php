@@ -8,7 +8,8 @@
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $query = "insert into user (username, password) values ('$username', '$password')";
+        $role = "politis";
+        $query = "insert into user (username, password, role) values ('$username', '$password', '$role')";
         mysqli_query($connection, $query);
         header("Location: login.php");
         exit;
