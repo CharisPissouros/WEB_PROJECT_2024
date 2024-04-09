@@ -1,10 +1,8 @@
-function isAdmin(){
+//add and include session to check who is logged in and what role they have.
+include ('fuctions.php');
+include ('get_from_database.php');
 
-    //check if the user is an admin with the credentials.
-    return true;
 
-}
-//fuction for civilian or rescuer
 
 var resuerIcon = L.icon({
   iconUrl: 'rescuer.jpg',  
@@ -87,4 +85,6 @@ var offerIcon = L.icon({
 //     alert("Invalid role. Please try again.");
 // }
 // alert("Your not allowed to add the base marker");
+
+
 

@@ -5,13 +5,14 @@ Drop database if exists data_base;
 Create database data_base;
 USE data_base;
 
-create table diaxiristis(
+create table User(
 Diaxiristis_Id int NOT NULL auto_increment,
 Username varchar(50) NOT NULL,
 Pass varchar(50) NOT NULL,
 Email varchar(50) NOT NULL,
 First_name varchar(50) NOT NULL,
 Last_name varchar(50) NOT NULL,
+role enum('admin','rescuer','civilian')NOT NULL ,
 
 primary key(Diaxiristis_Id)
 )ENGINE=InnoDB; 
@@ -78,6 +79,7 @@ create table details (
     base(product_id)
 )ENGINE=InnoDB;
 
+create table 
 
 
 //Πρεπει να υπαρξει ενας πινακας για τον οποιο θα πρεπει να εισαγετε ιστορικο των task και απο τις δυο πλευρες 
