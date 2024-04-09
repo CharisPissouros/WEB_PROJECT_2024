@@ -8,11 +8,24 @@
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $role = 'diasostis';
-        $query = "insert into user (username, password, role) values ('$username', '$password', '$role')";
-        mysqli_query($connection, $query);
-        echo "Neo melos diasosti!";
+        //Check if username exists
+        $query = "select * from user where username = '$username'";
+        $result = mysqli_query($connection, $query);
+        if (mysqli_num_rows($result) > 0)
+        {
+             echo "Username: $username already exists! Try a different one.";
+        }
+        else 
+        {
+            //Username acceptable.
+            $role = 'diasostis';
+            $query = "insert into user (username, password, role) values ('$username', '$password', '$role')";
+            mysqli_query($connection, $query);
+            echo "Neo melos diasosti!";
+        }
+        
     }
+
 ?>
 
 <!DOCTYPE html>
