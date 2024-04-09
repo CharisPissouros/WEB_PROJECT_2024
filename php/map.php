@@ -7,9 +7,9 @@
 <body>
  <button id = "CheckTasksHistory" class = "buttons">Tasks History</button>
  <script>
-    //create a script to take a query from the database and display it in a table
+    //call a php file that will return the tasks history 
  </script>
-
+<button>                        </button>    
 
 
 </body>
