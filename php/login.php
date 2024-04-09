@@ -16,8 +16,22 @@
             if ($user['password'] === $password)
             {
                 $_SESSION['user_id'] = $user['user_id'];
-                header("Location: index.php");
-                exit;
+                $_SESSION['role'] = $user['role'];
+                if ($_SESSION['role'] === "admin")
+                {
+                    header("Location: admin_main_page.php");
+                    exit;
+                }
+                elseif ($_SESSION['role'] === "user")
+                {
+                    header("Location: index.php");
+                    exit;
+                }
+                elseif ($_SESSION['role'] === "diasostis")
+                {
+                    header("Location: diasostis_main_page.php");
+                    exit;
+                }
             }
         }
         else
