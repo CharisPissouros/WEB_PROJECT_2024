@@ -1,3 +1,9 @@
+var map = L.map('map').setView([38.246242, 21.7350847], 16);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);   //  Add the tile layer to the map , is where the map is displayed from 
 //add and include session to check who is logged in and what role they have.
 include ('fuctions.php');
 include ('get_from_database.php');
