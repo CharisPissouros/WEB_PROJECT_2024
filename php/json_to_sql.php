@@ -8,7 +8,7 @@ $jsonData = file_get_contents('http://usidas.ceid.upatras.gr/web/2023/export.php
 // Parse the JSON data
 $data = json_decode($jsonData, true);
 
-// Access the items
+// Access the items21P3J21321
 $items = $data['items'];
 
 // Iterate through the JSON data and insert into the database
