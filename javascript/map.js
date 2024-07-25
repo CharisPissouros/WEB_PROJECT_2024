@@ -1,3 +1,6 @@
+include ('fuctions.php');
+include ('get_from_database.php');
+
 var map = L.map('map').setView([38.246242, 21.7350847], 16);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -5,8 +8,35 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);   //  Add the tile layer to the map , is where the map is displayed from 
 //add and include session to check who is logged in and what role they have.
-include ('fuctions.php');
-include ('get_from_database.php');
+
+
+
+
+
+
+navigator.geolocation.WatchPosition(success, error);
+
+function success ($position){
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    var accuracy = position.coords.accuracy;
+    
+    L.marker([latitude, longitude]).addTo(map)  // add the marker to the map
+    L.circle([latitude, longitude],{radious : accuracy} ).addTo(map) // add the circle to the map
+
+}
+
+function error(err){
+    if (err.code ===1){ 
+    alert("Unable to retrieve your location");
+}
+else{
+    alert("Unable to retrieve your location via a tecnhical promblem: " + err.message);}
+}
+
+
+
+
 
 
 
