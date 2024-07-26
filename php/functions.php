@@ -22,4 +22,17 @@ function login_sessions($connection)
     }
     
 }
+
+//Vriskoume to product_category_id gia autofill ton paromion products
+function find_product_category_id($connection, $product_name){
+    $query = "SELECT product_category_id FROM products WHERE product_name = '$product_name'";
+    $result = mysqli_query($connection, $query);
+    if (mysqli_num_rows($result) > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $product_category_id = $row['product_category_id'];
+        }
+    }
+    return $product_category_id;
+}
 ?>

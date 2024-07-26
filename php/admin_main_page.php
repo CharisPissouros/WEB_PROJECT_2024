@@ -9,7 +9,7 @@ include("json_to_sql.php");
 $user = login_sessions($connection);
 
 //Find all products for the form
-$query = "select product_id,product_name FROM products";
+$query = "SELECT product_name FROM products";
 $result = mysqli_query($connection, $query);
 $products=[];
 if (mysqli_num_rows($result) > 0)
@@ -48,12 +48,13 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
             upload($file);
         } elseif (isset($_POST['category']) && isset( $_POST['products'])){
             $category = $_POST['category'];
-            $products_cat = $_POST['products'];
-            foreach ( $products_cat as $product){
-                $query = "UPDATE products SET product_category_name = '$category' WHERE product_id = '$product_id'";
+            $products_name = $_POST['products'];
+            foreach ( $products_name as $product){
+                $category_id = find_product_category_id($connection, $product);
+                $query = "UPDATE products SET product_category_name = '$category' WHERE product_category_id = '$category_id'";
                 mysqli_query($connection, $query);
             }
-
+            echo "Succesfully added category";
         }
 
     }
@@ -133,7 +134,8 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src=./map.js></script>
     </div>
-
+    <br><br>
+    <br><br>
     <!-- Add a category Form -->
     <h2>Category name and products form</h2>   
     <form method="POST">
@@ -142,10 +144,10 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
         <br>
         <br>
         <label for="products_select">Choose Products to add to the category <br> *Every similar product will automatically get the same category name</label>
-        <select id="products" name="products" multiple required>
-        <?php foreach($products as $product_name): ?>
-                <option >
-                    <?php echo $product_name['product_name'];?>
+        <select id="products" name="products[]" multiple required>
+        <?php foreach($products as $product_info): ?>
+                <option>
+                    <?php echo $product_info['product_name'];?>
                 </option>
             <?php endforeach; ?>
         </select>
