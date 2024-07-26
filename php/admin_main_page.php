@@ -1,9 +1,14 @@
 <?php
-    session_start();
-    include("get_from_database.php");
-    include("functions.php");
-    include("json_to_sql.php");
-    $user = login_sessions($connection);
+
+session_start();
+
+include("get_from_database.php");
+include("functions.php");
+include("json_to_sql.php");
+
+$user = login_sessions($connection);
+
+if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
@@ -33,6 +38,16 @@
         }
 
     }
+} else {
+    //Redirect to previous page (No access if role is not admin)
+    //header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // Output JavaScript to redirect back
+    echo '<script type="text/javascript">
+            alert("You do not have permission to access this page.");
+            history.back();
+          </script>';
+    exit;
+}
 
 ?>
 
