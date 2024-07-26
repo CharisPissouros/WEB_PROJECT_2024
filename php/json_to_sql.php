@@ -35,7 +35,7 @@ function json_to_sql($data){
         $category = $product['category'];
 
         // Prepare the SQL statement
-        $sql_data = "INSERT INTO products (product_id, product_name,product_category) VALUES ('$id','$name','$category')";    
+        $sql_data = "INSERT INTO products (product_id, product_name,product_category_id) VALUES ('$id','$name','$category')";    
 
         // Execute the SQL statement
         if ($connection->query($sql_data) === TRUE) {
