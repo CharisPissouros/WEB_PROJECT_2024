@@ -12,18 +12,30 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
-
+let marker , circle , zoomed;
 
 navigator.geolocation.WatchPosition(success, error);
 
-function success ($position){
+function success (position){
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     var accuracy = position.coords.accuracy;
-    
-    L.marker([latitude, longitude]).addTo(map)  // add the marker to the map
-    L.circle([latitude, longitude],{radious : accuracy} ).addTo(map) // add the circle to the map
 
+
+    if (marker){ //Check if the marker is already on the map
+    map.removeLayer(marker);// remove the marker from the map
+    map.removeLayer(circle);// remove the circle from the map
+    
+    }
+    
+     marker = L.marker([latitude, longitude]).addTo(map)  // add the marker to the map
+     circle = L.circle([latitude, longitude],{radious : accuracy} ).addTo(map) // add the circle to the map
+    
+     if(!zoomed){ // check if the map is zoomed in , adjast the zoom level only one time 
+        zoomed = map.fitBounds(circle.getBounds());// fit the map to the circle
+     }
+
+     map.setView([latitude, longitude]); // set the view of the map to the current location
 }
 
 function error(err){
