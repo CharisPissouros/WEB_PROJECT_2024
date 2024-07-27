@@ -1,3 +1,9 @@
+<?php
+
+
+include 'functions.php' ;
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -24,11 +30,11 @@
 
 
  <div id="map"></div>
-
+ <script type="text/javascript" src="map.js"></script> 
 
 
 <script> 
- var map = L.map('map').setView([38.246242, 21.7350847], 16);
+ var map = L.map('map').setView([38.246242, 21.7350847], 15);
 
  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -39,6 +45,9 @@
 <!-- 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="map.js"></script> -->
+
+
+
 
 </body>
 
