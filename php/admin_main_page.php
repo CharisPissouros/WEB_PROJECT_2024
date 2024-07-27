@@ -8,17 +8,6 @@ include("json_to_sql.php");
 
 $user = login_sessions($connection);
 
-//Find all products for the form
-$query = "SELECT product_name FROM products";
-$result = mysqli_query($connection, $query);
-$products=[];
-if (mysqli_num_rows($result) > 0)
-{
-    while ($row = mysqli_fetch_assoc($result)) {
-        $products[] = $row;
-    }
-}
-
 if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -42,16 +31,18 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
                 echo "Neo melos diasosti!";
             }
         } elseif (isset($_POST['load_json_from_url'])){
-            url(); 
+            url();
         } elseif (isset($_FILES['json_file'])){
             $file = $_FILES['json_file'];
             upload($file);
         } elseif (isset($_POST['category']) && isset( $_POST['products'])){
             $category = $_POST['category'];
-            $products_name = $_POST['products'];
-            foreach ( $products_name as $product){
-                $category_id = find_product_category_id($connection, $product);
-                $query = "UPDATE products SET product_category_name = '$category' WHERE product_category_id = '$category_id'";
+            $products_id = $_POST['products'];
+            foreach ($products_id as $product){
+                //$category_id = find_product_category_id($connection, $product);
+                //echo "Katigoria: $category_id";
+                //echo "<br> Product: $product";
+                $query = "UPDATE products SET product_category_name = '$category' WHERE product_category_id = '$product'";
                 mysqli_query($connection, $query);
             }
             echo "Succesfully added category";
@@ -83,7 +74,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
             text-align: center;
         }
     </style>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Welcome to the main admin page.</h1>
@@ -145,11 +136,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
         <br>
         <label for="products_select">Choose Products to add to the category <br> *Every similar product will automatically get the same category name</label>
         <select id="products" name="products[]" multiple required>
-        <?php foreach($products as $product_info): ?>
-                <option>
-                    <?php echo $product_info['product_name'];?>
-                </option>
-            <?php endforeach; ?>
+            <!-- Products showing here using AJAX (JQUERY) -->
         </select>
         <br>
         <br>
@@ -157,6 +144,28 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
     </form>
     </div>
     <br><br>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'get_products.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        data.forEach(function(product) {
+                            $('#products').append('<option value="' + product.product_category_id + '">' + product.product_name + '</option>');
+                        });
+                    }
+                },
+                error: function() {
+                    alert('Error loading products');
+                }
+            });
+        });
+    </script>
 
     <a href="logout.php">Logout</a>
 </body>
