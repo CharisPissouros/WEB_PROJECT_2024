@@ -1,0 +1,21 @@
+/* Define custom styles for the popup */
+.custom-popup .leaflet-popup-content-wrapper {
+    background: #f9f9f9; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    padding: 10px; /* Padding inside the popup */
+}
+
+.custom-popup .leaflet-popup-content {
+    font-family: 'Arial', sans-serif; /* Font family */
+    font-size: 14px; /* Font size */
+    color: #333; /* Text color */
+}
+
+.custom-popup .leaflet-popup-tip-container {
+    width: auto;
+}
+
+.custom-popup .leaflet-popup-tip {
+    background: #f9f9f9; /* Match the background color of the popup */
+}
