@@ -122,8 +122,9 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
     <div id="map">
     <!-- Show map in admin page not working yet -->
     <h2>Map</h2>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src=./map.js></script>
+    <!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src=./map.js></script> -->
+    <button class="map-button" onclick="window.location.href='/WEB_PROJECT_2024/php/map.php';">Go to Map</button>
     </div>
     <br><br>
     <br><br>

@@ -1,4 +1,3 @@
-
 // Check if the map is already initialized
 if (typeof map === 'undefined') {
     var map = L.map('map').setView([38.246242, 21.7350847], 16);
@@ -79,7 +78,7 @@ if (admin === true) {
     });
 } else if (civilian === true) {
     var Cmarker = L.marker([51.5, -0.09], { draggable: false }).addTo(map)
-                   .bindPopup( )
+                   .bindPopup()
                    .openPopup();
     Cmarker.setIcon(offerIcon);
     
@@ -90,6 +89,74 @@ if (admin === true) {
     alert("Invalid role");
 }
 
+
+// Function to add markers and popups based on POI data
+function addPOIMarkers(poiData) {
+    poiData.forEach(poi => {
+        let popupContent = '';
+        let icon = null;
+
+        if (poi.type === 'vehicle') {
+            popupContent = `<b>Vehicle: ${poi.username}</b><br>
+                            Cargo: ${poi.cargo}<br>
+                            Status: ${poi.status}`;
+
+            if (poi.tasks.length > 0) {
+                poi.tasks.forEach(task => {
+                    popupContent += `<br>Task: ${task.description}`;
+                    let taskMarker = L.marker([task.lat, task.lon]).addTo(map);
+                    L.polyline([[poi.lat, poi.lon], [task.lat, task.lon]], { color: 'blue' }).addTo(map);
+                });
+            }
+            icon = rescuerIcon;
+        } else if (poi.type === 'request') {
+            popupContent = `<b>Request</b><br>
+                            Name: ${poi.name}<br>
+                            Phone: ${poi.phone}<br>
+                            Request Date: ${poi.requestDate}<br>
+                            Item: ${poi.item}<br>
+                            Quantity: ${poi.quantity}<br>
+                            Pickup Date: ${poi.pickupDate}<br>
+                            Vehicle: ${poi.vehicleUsername}`;
+            icon = requestIcon;
+        } else if (poi.type === 'offer') {
+            popupContent = `<b>Offer</b><br>
+                            Name: ${poi.name}<br>
+                            Phone: ${poi.phone}<br>
+                            Offer Date: ${poi.offerDate}<br>
+                            Item: ${poi.item}<br>
+                            Quantity: ${poi.quantity}<br>
+                            Pickup Date: ${poi.pickupDate}<br>
+                            Vehicle: ${poi.vehicleUsername}`;
+            icon = offerIcon;
+        }
+
+        let poiMarker = L.marker([poi.lat, poi.lon], { icon: icon }).addTo(map);
+        poiMarker.bindPopup(popupContent);
+
+        // Draw lines between vehicle and tasks or requests/offers
+        if (poi.type === 'vehicle' && poi.tasks.length > 0) {
+            poi.tasks.forEach(task => {
+                L.polyline([[poi.lat, poi.lon], [task.lat, task.lon]], { color: 'blue' }).addTo(map);
+            });
+        } else if (poi.type === 'request' && poi.vehicleUsername) {
+            // Assuming we have vehicle marker coordinates available
+            let vehicleMarker = poiData.find(v => v.type === 'vehicle' && v.username === poi.vehicleUsername);
+            if (vehicleMarker) {
+                L.polyline([[poi.lat, poi.lon], [vehicleMarker.lat, vehicleMarker.lon]], { color: 'red' }).addTo(map);
+            }
+        } else if (poi.type === 'offer' && poi.vehicleUsername) {
+            // Assuming we have vehicle marker coordinates available
+            let vehicleMarker = poiData.find(v => v.type === 'vehicle' && v.username === poi.vehicleUsername);
+            if (vehicleMarker) {
+                L.polyline([[poi.lat, poi.lon], [vehicleMarker.lat, vehicleMarker.lon]], { color: 'green' }).addTo(map);
+            }
+        }
+    });
+}
+
+// Call the function to add POI markers
+addPOIMarkers(poiData);
 
 // L.marker([51.5, -0.09]).addTo(map)
 //     .bindPopup('A pretty CSS popup.<br> Easily customizable.')
