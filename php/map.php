@@ -32,11 +32,13 @@ if($_SESSION['role'] != "user" && $_SESSION['role'] != "admin" && $_SESSION['rol
             z-index: 1000;
         }
     </style>
+
 </head>
 <body>
 <div id="map"></div>
 <button id="CheckTasksHistory" class="buttons">Tasks History</button>
-
+ <script type="text/javascript" src="../javascript/map.js"></script>
+<!-- 
 <script> 
     var map = L.map('map').setView([38.246242, 21.7350847], 15);
 
@@ -44,6 +46,6 @@ if($_SESSION['role'] != "user" && $_SESSION['role'] != "admin" && $_SESSION['rol
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);   //  Add the tile layer to the map, is where the map is displayed from 
-</script>
+</script> -->
 </body>
 </html>

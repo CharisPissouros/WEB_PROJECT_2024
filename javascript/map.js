@@ -66,7 +66,7 @@ var baseIcon = L.icon({
     iconAnchor: [25, 64]
 });
 
-if (admin === true) {
+if ($_SESSION['role'] === 'admin') {
     // Admin is able to add the base marker
     var Bmarker = L.marker([51.5, -0.09], { draggable: true }).addTo(map);
     Bmarker.setIcon(baseIcon);
@@ -76,13 +76,13 @@ if (admin === true) {
         console.log(position); // You can save the marker position to your database here
         alert('Marker position: ' + position.toString()); // An alert of a string form of the position
     });
-} else if (civilian === true) {
+} else if ($_SESSION['role'] === 'politis') {
     var Cmarker = L.marker([51.5, -0.09], { draggable: false }).addTo(map)
-                   .bindPopup()
+                    .bindPopup()
                    .openPopup();
     Cmarker.setIcon(offerIcon);
     
-} else if (rescuer === true) {
+} else if ($_SESSION['role'] === 'diasostis') {
     var Rmarker = L.marker([51.5, -0.09], { draggable: false }).addTo(map);
     Rmarker.setIcon(requestIcon);
 } else {
