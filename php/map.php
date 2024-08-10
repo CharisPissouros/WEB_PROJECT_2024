@@ -2,7 +2,8 @@
 session_start();
 include("get_from_database.php");//connect with db to know who is logged in
 include("functions.php");
-if($_SESSION['role'] != "user" && $_SESSION['role'] != "admin" && $_SESSION['role'] != "diasostis")
+//Ean den iparxi settarismeno role go back to login page
+if(!isset($_SESSION['role']))
 {
     header("Location: login.php");
     exit;
