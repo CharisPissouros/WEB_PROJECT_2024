@@ -166,7 +166,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
     <div id="Delete Product">
     <!-- Delete Product from Base Form -->
     <h2>Diagrafi Proiontos</h2>   
-    <form method="GET">
+    <form method="GET" action="./delete_products.php">
         <label for="product">Give the name of the product you want to delete</label>
         <input type="text" id="product_name" name="product_name" required>
         <br>
