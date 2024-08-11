@@ -163,4 +163,3 @@ addPOIMarkers(poiData);
 //     .openPopup();
 
 // setLatLng(<LatLng> latlng) //Sets the geographical point where the overlay will open.
-

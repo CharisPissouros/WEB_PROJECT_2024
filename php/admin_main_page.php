@@ -146,6 +146,36 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] === "admin")){
     </div>
     <br><br>
 
+    <div id="Add Product">
+    <!-- Add Product to Base Form -->
+    <h2>Prosthiki Neou Proiontos</h2>   
+    <form method="GET" action="./add_product.php">
+        <label for="product">Product Name</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <br>
+        <br>
+        <label for="product_category">Product Category</label>
+        <input type="text" id="product_category" name="product_category" required>
+        <br>
+        <br>
+        <input type="submit" id="Add_product" name="Add Product to Base">
+    </form>
+    </div>
+    <br><br>
+
+    <div id="Delete Product">
+    <!-- Delete Product from Base Form -->
+    <h2>Diagrafi Proiontos</h2>   
+    <form method="GET">
+        <label for="product">Give the name of the product you want to delete</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <br>
+        <br>
+        <input type="submit" id="Delete_product" name="Delete Product from Base">
+    </form>
+    </div>
+    <br><br>
+
     <script>
         $(document).ready(function() {
             $.ajax({
