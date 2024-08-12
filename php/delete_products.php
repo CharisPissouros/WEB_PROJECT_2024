@@ -4,6 +4,15 @@ include("get_from_database.php");
 if($_SERVER['REQUEST_METHOD'] == "GET")
 {
         $name = $_GET['product_name'];
+
+        $query = "SELECT product_id FROM products WHERE product_name = '$name'";
+        $result = mysqli_query($connection, $query);
+        if ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['product_id'];
+            $query = "DELETE FROM product_details WHERE product_id = '$id'";
+            mysqli_query($connection, $query);
+            echo "Product details Deleted! <br>";
+        }
         $query = "SELECT * FROM products WHERE product_name = '$name'";
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result) > 0)
