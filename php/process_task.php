@@ -1,5 +1,5 @@
 <?php
-include 'database.php';
+include("get_from_database.php");
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the form data
